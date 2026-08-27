@@ -1,0 +1,803 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+
+    background:
+        radial-gradient(circle at top,
+        #35134f,
+        #160c27 45%,
+        #08050f);
+
+    color: white;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    position: relative;
+
+    padding: 30px;
+
+}
+
+
+.hero-content {
+
+    animation: heroEntry 1.5s ease;
+
+}
+
+
+.small-text {
+
+    font-size: 15px;
+
+    letter-spacing: 3px;
+
+    color: #ffc4e1;
+
+    margin-bottom: 25px;
+
+}
+
+
+.hero h1 {
+
+    font-size: clamp(45px, 9vw, 100px);
+
+    line-height: 1.05;
+
+    font-weight: 800;
+
+}
+
+
+.hero h1 span {
+
+    display: block;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff73b8,
+            #ffd1e7,
+            #ff73b8
+        );
+
+    -webkit-background-clip: text;
+
+    background-clip: text;
+
+    color: transparent;
+
+    animation: shine 3s infinite;
+
+}
+
+
+.subtitle {
+
+    font-size: 20px;
+
+    color: #e9d9ed;
+
+    margin: 30px 0;
+
+}
+
+
+#startBtn {
+
+    border: none;
+
+    padding: 16px 32px;
+
+    border-radius: 50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff4fa3,
+            #9c4dff
+        );
+
+    color: white;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 20px rgba(255, 79, 163, .5);
+
+    transition: .3s;
+
+}
+
+
+#startBtn:hover {
+
+    transform: scale(1.08);
+
+    box-shadow:
+        0 0 40px rgba(255, 79, 163, .8);
+
+}
+
+
+/* =========================
+   PARTICLES
+========================= */
+
+.particles {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 10;
+
+}
+
+
+.particle {
+
+    position: absolute;
+
+    bottom: -30px;
+
+    animation:
+        floatUp linear forwards;
+
+    opacity: .8;
+
+}
+
+
+@keyframes floatUp {
+
+    from {
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+        opacity: 0;
+
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    to {
+
+        transform:
+            translateY(-110vh)
+            rotate(360deg);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+/* =========================
+   PRESENTATION
+========================= */
+
+.presentation {
+
+    min-height: 100vh;
+
+    padding: 100px 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+}
+
+
+.section-title {
+
+    text-align: center;
+
+    margin-bottom: 45px;
+
+}
+
+
+.section-title p {
+
+    color: #ff86c8;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    font-size: 13px;
+
+}
+
+
+.section-title h2 {
+
+    font-size: clamp(30px, 5vw, 55px);
+
+    margin-top: 10px;
+
+}
+
+
+/* Slider */
+
+.slider {
+
+    position: relative;
+
+    width: min(900px, 95vw);
+
+    height: 560px;
+
+    overflow: hidden;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.5);
+
+}
+
+
+.slide {
+
+    position: absolute;
+
+    inset: 0;
+
+    opacity: 0;
+
+    transform: scale(1.08);
+
+    transition:
+        opacity .8s ease,
+        transform 1.2s ease;
+
+}
+
+
+.slide.active {
+
+    opacity: 1;
+
+    transform: scale(1);
+
+}
+
+
+.slide img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+}
+
+
+.slide::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            transparent 30%,
+            rgba(0,0,0,.85)
+        );
+
+}
+
+
+.slide-text {
+
+    position: absolute;
+
+    z-index: 2;
+
+    bottom: 45px;
+
+    left: 45px;
+
+    right: 45px;
+
+}
+
+
+.slide-text span {
+
+    color: #ff83c4;
+
+    font-size: 14px;
+
+}
+
+
+.slide-text h2 {
+
+    font-size: 42px;
+
+    margin: 8px 0;
+
+}
+
+
+.slide-text p {
+
+    max-width: 550px;
+
+    color: #eee;
+
+    font-size: 17px;
+
+    line-height: 1.6;
+
+}
+
+
+/* Navigation */
+
+.prev,
+.next {
+
+    position: absolute;
+
+    z-index: 5;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 50px;
+
+    height: 50px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,.3);
+
+    background: rgba(0,0,0,.35);
+
+    color: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(10px);
+
+}
+
+
+.prev {
+    left: 20px;
+}
+
+
+.next {
+    right: 20px;
+}
+
+
+.prev:hover,
+.next:hover {
+
+    background: rgba(255,80,170,.6);
+
+}
+
+
+/* Dots */
+
+.dots {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 25px;
+
+}
+
+
+.dot {
+
+    width: 10px;
+
+    height: 10px;
+
+    border-radius: 50%;
+
+    background: #777;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+}
+
+
+.dot.active {
+
+    width: 30px;
+
+    border-radius: 20px;
+
+    background: #ff6bb7;
+
+}
+
+
+/* =========================
+   RAKHI
+========================= */
+
+.rakhi-section {
+
+    min-height: 80vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 80px 20px;
+
+}
+
+
+.rakhi-container {
+
+    max-width: 700px;
+
+}
+
+
+.rakhi {
+
+    width: 180px;
+
+    height: 180px;
+
+    margin: auto;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        conic-gradient(
+            #ff62b0,
+            #ffd16b,
+            #b85cff,
+            #ff62b0
+        );
+
+    box-shadow:
+        0 0 50px rgba(255,100,190,.6);
+
+    animation:
+        rotateRakhi 10s linear infinite;
+
+}
+
+
+.rakhi-center {
+
+    width: 90px;
+
+    height: 90px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #1b0d2d;
+
+    font-size: 42px;
+
+}
+
+
+.rakhi-container h2 {
+
+    font-size: 40px;
+
+    margin-top: 40px;
+
+}
+
+
+.rakhi-container p {
+
+    margin-top: 20px;
+
+    color: #d9cbe1;
+
+    font-size: 18px;
+
+    line-height: 1.8;
+
+}
+
+
+/* =========================
+   FINAL
+========================= */
+
+.final-section {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 30px;
+
+}
+
+
+.final-card {
+
+    width: min(700px, 95vw);
+
+    padding: 60px 40px;
+
+    text-align: center;
+
+    border-radius: 30px;
+
+    background:
+        rgba(255,255,255,.07);
+
+    border:
+        1px solid rgba(255,255,255,.15);
+
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.4);
+
+    animation: cardFloat 4s ease-in-out infinite;
+
+}
+
+
+.emoji {
+
+    font-size: 55px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.final-card h1 {
+
+    font-size: 50px;
+
+    color: #ff9bd0;
+
+}
+
+
+.final-card p {
+
+    font-size: 18px;
+
+    line-height: 1.8;
+
+    color: #e2d9e7;
+
+    margin-top: 20px;
+
+}
+
+
+.final-card h2 {
+
+    margin-top: 35px;
+
+    font-size: 30px;
+
+}
+
+
+.signature {
+
+    margin-top: 30px;
+
+    color: #ff9bd0;
+
+    font-style: italic;
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    text-align: center;
+
+    padding: 30px;
+
+    color: #9f91a8;
+
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes heroEntry {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(40px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+@keyframes shine {
+
+    0%,100% {
+        filter: brightness(1);
+    }
+
+    50% {
+        filter: brightness(1.5);
+    }
+
+}
+
+
+@keyframes rotateRakhi {
+
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+@keyframes cardFloat {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .hero h1 {
+        font-size: 48px;
+    }
+
+    .subtitle {
+        font-size: 16px;
+    }
+
+    .slider {
+        height: 500px;
+    }
+
+    .slide-text {
+        left: 25px;
+        right: 25px;
+        bottom: 30px;
+    }
+
+    .slide-text h2 {
+        font-size: 30px;
+    }
+
+    .slide-text p {
+        font-size: 15px;
+    }
+
+    .prev,
+    .next {
+        width: 42px;
+        height: 42px;
+    }
+
+    .final-card {
+        padding: 45px 25px;
+    }
+
+}
